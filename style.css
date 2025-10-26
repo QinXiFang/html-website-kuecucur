@@ -528,7 +528,7 @@ body, html {
   display: block;
   width: 90%;
   padding: 3rem 1rem;
-  background: linear-gradient(180deg, #e6e6e6, #f7f7f7);
+  background: linear-gradient(180deg, rgba(230, 230, 230, 0.5), rgba(247, 247, 247, 0.8));
   border-top: 3px solid cyan;
   border-bottom: 3px solid cyan;
   border-radius: 10px;
@@ -555,7 +555,7 @@ body, html {
   align-items: flex-start;
   justify-content: center;
   gap: 2rem;
-  background-color: #dcdcdc;
+  background-color: rgba(220, 220, 220, 1);
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
@@ -572,7 +572,7 @@ body, html {
 
 .contact .ringkasan {
   flex: 1 1 300px;
-  background: #fff;
+  background: rgba(200, 200, 200, 1);
   border-radius: 1rem;
   padding: 2rem;
   text-align: left;
