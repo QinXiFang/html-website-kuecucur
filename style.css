@@ -84,6 +84,7 @@ body, html {
     rgba(44, 44, 44, 0.9),
     rgba(0, 0, 0, 0.8)
   );
+  backdrop-filter: blur(3px);
   border-bottom: 1px solid #1f1f1f;
   position: fixed;
   top: 0;
@@ -114,27 +115,23 @@ body, html {
           drop-shadow(0 0 25px #ffa6004b);
 }
 
-.navbar .navbar-logo {
-  background: linear-gradient(to top, #8d4a2c, #fb8d19, #ffd54f);
+.navbar .navbar-nav a {
+  color: #fff;
+  display: inline-block;
+  font-size: 1.5rem;
+  margin: 0 1rem;
+  margin-top: 1rem;
+}
+
+.navbar .navbar-nav a:hover {
+  color: #ffd54f;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   text-shadow:
     0 0 10px #ffa6004b,
     0 0 20px #ffa6004b,
     0 0 30px #ffa6004b,
     0 0 50px #ffa6004b,
     0 0 60px #ffa6004b;
-}
-
-.navbar .navbar-nav a {
-  color: #fff;
-  display: inline-block;
-  font-size: 1.5rem;
-  margin: 0 1rem;
-}
-
-.navbar .navbar-nav a:hover {
-  color: #ffd54f;
 }
 
 .navbar .navbar-nav a::after {
@@ -190,10 +187,20 @@ body, html {
 }
 
 .hero .content h1 {
+  width: 50ch;
   font-size: 2rem;
   color: #fff;
   text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
   line-height: 1.2;
+  text-wrap: nowrap;
+  overflow: hidden;
+  animation: typing 1.5s steps(50) infinite alternate-reverse;
+}
+
+@keyframes typing {
+  from {
+    width: 0ch;
+  }
 }
 
 .hero .content span {
@@ -292,18 +299,18 @@ body, html {
 .profil {
   position: relative;
   padding: 4rem 7% 1.4rem;
-  background-color: #000;
+  background: radial-gradient(circle at center, #3d3d3d, #000000 80%);
   
   border-radius: 30px;
   margin: 20px;
   transition: all 0.8s ease-in-out;
-  animation: neonFlow 3.45s linear infinite;
 }
 
 .profil h2 {
   text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+  margin-top: 3rem;
 }
 
 .profil h2 span {
@@ -420,10 +427,10 @@ body, html {
   background-color: var(--rf-dark);
   border-radius: 25px;
   box-shadow:
-  0 0 10px #6c63ff,
-  0 0 20px #00f0ff,
-  0 0 40px #00aaff,
-  0 0 60px #6c63ff;
+  0 0 5px #6c63ff,
+  0 0 10px #00f0ff,
+  0 0 20px #00aaff,
+  0 0 40px #6c63ff;
 }
 
 .sejarah h2, .more h2, .contact h2, .resep h2, .keunikan h2, .album h2 {
@@ -837,7 +844,7 @@ box-shadow:
     border: 2px solid white;
     border-radius: 20px;
     box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
-    margin: 0.8rem;
+    margin: 8rem;
   }
 
 /* Video background */
@@ -878,21 +885,40 @@ video::-webkit-media-controls-enclosure {
 }
 
 /* border neon profil */
-@keyframes neonFlow {
+.glow-border {
+  position: relative; /* Diperlukan untuk pseudo-elements */
+  /* Tambahkan padding atau margin jika perlu untuk memberi ruang pada border */
+  padding: 10px; /* Opsional: Beri jarak agar border tidak menutupi konten */
+}
+
+.glow-border:before,
+.glow-border:after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  background-size: 400%;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  z-index: -1; /* Agar border di belakang konten */
+  animation: glow 25s linear infinite;
+  border-radius: inherit; /* Agar border mengikuti sudut elemen (jika ada border-radius) */
+}
+
+.glow-border:after {
+  filter: blur(16px); /* Efek blur untuk glow */
+}
+
+@keyframes glow {
   0% {
-    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
-  }
-  25% {
-    box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+    background-position: 0 0;
   }
   50% {
-    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px #ff0000;
-  }
-  75% {
-    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00;
+    background-position: 500% 0;
   }
   100% {
-    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
+    background-position: 0 0;
   }
 }
 
@@ -951,9 +977,10 @@ video::-webkit-media-controls-enclosure {
     top: 100%;
     right: -100%;
     background-color: rgba(1, 1, 1, 0.8);
+    backdrop-filter: blur(6px);
     width: 12rem;
     height: 100vh;
-    border: 1px solid white;
+    border: 1px solid #eee;
     transition: 0.3s;
   }
 
@@ -975,6 +1002,16 @@ video::-webkit-media-controls-enclosure {
   .navbar .navbar-nav a:hover::after {
     transform: scaleX(0.35);
   }
+  
+  .hero .content h1 {
+    width: 50ch;
+    font-size: 2rem;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+    line-height: 1.2;
+    text-wrap: wrap;
+    animation: none;
+}
   
 /* object home */
   .orbit-circle {
@@ -1057,4 +1094,14 @@ video::-webkit-media-controls-enclosure {
   .sejarah {
     margin: 15px;
   }
+  
+  .resep, .keunikan {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(6px);
+    border: 2px solid white;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
+    margin: 0.8rem;
+  }
+  
 }
