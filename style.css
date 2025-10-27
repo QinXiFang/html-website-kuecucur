@@ -194,7 +194,7 @@ body, html {
   line-height: 1.2;
   text-wrap: nowrap;
   overflow: hidden;
-  animation: typing 2.5s steps(50) infinite alternate-reverse;
+  animation: typing 3s steps(50) infinite alternate-reverse;
 }
 
 @keyframes typing {
